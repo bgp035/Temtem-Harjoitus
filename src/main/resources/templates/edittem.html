@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Temtem Harjoitustyö</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.0/css/bootstrap.min.css} "/>
+</head>
+
+<body>
+	<div>
+		<form th:object="${temtem}" th:action="@{../save}" action="#" method="post">
+		  	<label for="temId">Temtem Id</label>
+			<input type="text" th:field="*{temId}" readonly="readonly"/>
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="name">Name</label>
+			<input type="text" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			
+		  	<label for="typelist">Type</label>
+			<select id="typelist" th:field="*{temType.typeId}" class="form-control">
+			<option th:each="temType: ${types}" th:value="${temType.typeId}" th:text="${temType.name}"></option>
+			</select>
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Temtem Harjoitustyö</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.0/css/bootstrap.min.css} "/>
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<h1>Temtem Types</h1>
+		</div>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Temtem Type</th>
+			</tr>
+			<tr th:each="temtype : ${temtypes}">
+				<td><a th:text="${temtype.name}"></a></td>
+			</tr>
+		</table>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Temtems</th>
+			</tr>
+			<tr th:each="temtype : ${temtypes}">
+				<td><a th:text="${temtype.temtems}"></a></td>
+			</tr>
+		</table>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Moves</th>
+			</tr>
+			<tr th:each="temtype : ${temtypes}">
+				<td><a th:text="${temtype.moves}"></a></td>
+			</tr>
+		</table>
+		
+	</div>
+</body>
+
+</html>

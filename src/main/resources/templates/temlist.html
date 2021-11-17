@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Temtem Harjoitustyö</title>
+<link th:rel="stylesheet" th:href="@{webjars/bootstrap/5.1.0/css/bootstrap.min.css} "/>
+</head>
+
+<body>
+	<div class="container">
+		<div>
+			<h1>Temtem Harjoitustyö</h1>
+		</div>
+		<div sec:authorize="isAnonymous()">
+			<form action="login">
+				<input type="submit" value="Sign In" class="btn btn-sm btn-danger"/>
+			</form>
+		</div>
+		
+		<div sec:authorize="isAuthenticated()" class="col-md-4" style="padding:20px 0">
+			<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+			</form>
+		</div>
+		
+		<table class="table table-striped">
+			<tr>
+				<th>Temtems ID</th>
+				<th>Temtems Name</th>
+				<th>Temtems Type</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+			</tr>
+			<tr th:each="temtem : ${temtems}">
+				<td><a th:text="${temtem.temId}"></a></td>
+				<td><a th:text="${temtem.name}"></a></td>
+				<td><a th:text="${temtem.temType.name}"></a></td>
+ 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edittem/{temId}(temId=${temtem.temId})}" class="btn btn-xs btn-info">Edit</a></td>  
+ 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletetem/{temId}(temId=${temtem.temId})}" class="btn btn-xs btn-danger">Delete</a></td> 
+			</tr>
+		</table>
+		<div>
+			<form action="addtemtem">
+				<input type="submit" value="Add Temtem" class="btn btn-sm btn-success"/>
+			</form>
+		</div>
+		
+	</div>
+</body>
+
+</html>

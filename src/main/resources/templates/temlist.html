@@ -11,6 +11,16 @@
 		<div>
 			<h1>Temtem Harjoitustyö</h1>
 		</div>
+		
+		
+			<form action="temtemtypes">
+				<input type="submit" value="Types" class="btn btn-sm btn-info"/>
+			</form>
+			
+			<form action="moves">
+				<input type="submit" value="Moves" class="btn btn-sm btn-info"/>
+			</form>
+		
 		<div sec:authorize="isAnonymous()">
 			<form action="login">
 				<input type="submit" value="Sign In" class="btn btn-sm btn-danger"/>
@@ -40,7 +50,7 @@
  				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deletetem/{temId}(temId=${temtem.temId})}" class="btn btn-xs btn-danger">Delete</a></td> 
 			</tr>
 		</table>
-		<div>
+		<div sec:authorize="hasAuthority('ADMIN')">
 			<form action="addtemtem">
 				<input type="submit" value="Add Temtem" class="btn btn-sm btn-success"/>
 			</form>

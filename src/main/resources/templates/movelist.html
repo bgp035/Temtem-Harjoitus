@@ -12,6 +12,15 @@
 			<h1>Temtem Moves</h1>
 		</div>
 		
+		
+			<form action="temtemtypes">
+				<input type="submit" value="Types" class="btn btn-sm btn-info"/>
+			</form>
+			
+			<form action="temtemlist">
+				<input type="submit" value="Temtems" class="btn btn-sm btn-info"/>
+			</form>
+		
 		<div sec:authorize="isAnonymous()">
 			<form action="login">
 				<input type="submit" value="Sign In" class="btn btn-sm btn-danger"/>
@@ -47,7 +56,7 @@
 			</tr>
 		</table>
 		
-		<div>
+		<div sec:authorize="hasAuthority('ADMIN')">
 			<form action="addmove">
 				<input type="submit" value="Add Move" class="btn btn-sm btn-success"/>
 			</form>
